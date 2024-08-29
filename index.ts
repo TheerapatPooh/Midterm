@@ -1,11 +1,13 @@
 import express from 'express'
 import "dotenv/config"
-import router from './Routes/userRoute'
+import { readdirSync } from 'fs'
 
 const app = express()
 const port = process.env.PORT
 
-app.use(router)
+readdirSync('./Routes').map((r:string) => 
+    app.use('/',require('./Routes/'+ r))
+)
 
 app.listen(port, () => {
     console.log(`Server is running on PORT:${port}`)
