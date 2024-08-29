@@ -7,15 +7,7 @@ export interface User {
     image: string
 }
 
-export function fetchAllUser(): Promise<any> {  
-    return new Promise((resolve, reject) => {
-        const sql = `SELECT * FROM users`;
-        db.query(sql, (err:any, results:any) => {
-            if (err) {
-                reject(err); 
-            } else {
-                resolve(results);  
-            }
-        });
-    });
+export function fetchAllUser() {  
+    const sql = `SELECT * FROM users`;
+    return db.query(sql)
 }
